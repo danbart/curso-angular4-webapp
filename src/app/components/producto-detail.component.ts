@@ -1,5 +1,7 @@
 import { Component } from '@angular/core';
 import { Router, ActivatedRoute, Params } from '@angular/router';
+import {enableProdMode} from '@angular/core';
+enableProdMode();
 
 import { ProductoService } from '../services/producto.service';
 import { Producto } from '../models/producto';
@@ -18,7 +20,7 @@ export class ProductoDetailComponent{
     private _router: Router
   ){}
 
-  ngOnOnit(){
+  ngOnInit(){
     console.log('producto-detail.component.ts cargado');
     this.getProducto();
   }
@@ -26,19 +28,18 @@ export class ProductoDetailComponent{
   getProducto(){
     this._route.params.forEach((params:Params)=>{
       let id = params['id'];
-      console.log(id);
-      // this._productoService.getProducto(id).subscribe(
-      //   response => {
-      //       if(response.code==200){
-      //         this.producto = response.data;
-      //       }else{
-      //         this._router.navigate(['/productos']);
-      //       }
-      //   },
-      //   error=>{
-      //     console.log(<any>error);
-      //   }
-      // );
+      this._productoService.getProducto(id).subscribe(
+        response => {
+            if(response.code==200){
+              this.producto = response.data;
+            }else{
+              this._router.navigate(['/productos']);
+            }
+        },
+        error=>{
+          console.log(<any>error);
+        }
+      );
     });
   }
 }
