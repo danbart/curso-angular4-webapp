@@ -1,11 +1,12 @@
 import { Injectable } from '@angular/core';
 import { Http, Response, Headers, RequestOptions } from '@angular/http';
 import 'rxjs/add/operator/map';
-import { Observable } from 'rxjs/Observable';
+import { Observable } from 'rxjs';
 import { Producto } from '../models/producto';
 import { GLOBAL } from './global';
 import {HttpClient, HttpHeaders} from '@angular/common/http';
 import { HttpModule } from '@angular/http';
+// import { map } from 'rxjs/operators';
 
 
 @Injectable()
